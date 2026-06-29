@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
 interface HeroProps {
@@ -10,6 +10,19 @@ const Hero: React.FC<HeroProps> = ({ isPlaying }) => {
   const { scrollY } = useScroll();
   const heroLogoScale = useTransform(scrollY, [0, 300], [1, 0.3]);
   const heroLogoOpacity = useTransform(scrollY, [0, 200], [1, 0]);
+
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePos({
+        x: (e.clientX / window.innerWidth - 0.5) * 2,
+        y: (e.clientY / window.innerHeight - 0.5) * 2,
+      });
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
 
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -27,12 +40,26 @@ const Hero: React.FC<HeroProps> = ({ isPlaying }) => {
 
       {/* Animated decorative SVG overlay */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {/* Glow filter definition */}
+        <svg width="0" height="0" className="absolute">
+          <defs>
+            <filter id="lotus-glow" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur" />
+              <feMerge>
+                <feMergeNode in="blur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+          </defs>
+        </svg>
+
         {/* Corner lotuses */}
         {/* Top-left */}
         <motion.svg
-          animate={{ y: [0, -6, 0], rotate: [0, 2, 0] }}
-          transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute top-20 left-4 md:left-10 opacity-30"
+          animate={{ y: [0, -6, 0], opacity: [0.3, 0.7, 0.3] }}
+          transition={{ y: { duration: 10, repeat: Infinity, ease: 'easeInOut' }, opacity: { duration: 3, repeat: Infinity, ease: 'easeInOut' } }}
+          className="absolute top-20 left-4 md:left-10"
+          style={{ rotate: mousePos.x * 15, filter: 'url(#lotus-glow)', transition: 'rotate 0.3s ease-out' }}
           width="120" height="120" viewBox="0 0 120 120"
         >
           <path d="M0,0 L0,120" stroke="#E8A317" strokeWidth="2"/>
@@ -49,9 +76,10 @@ const Hero: React.FC<HeroProps> = ({ isPlaying }) => {
 
         {/* Top-right */}
         <motion.svg
-          animate={{ y: [0, -6, 0], rotate: [0, -2, 0] }}
-          transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
-          className="absolute top-20 right-4 md:right-10 opacity-30"
+          animate={{ y: [0, -6, 0], opacity: [0.3, 0.7, 0.3] }}
+          transition={{ y: { duration: 12, repeat: Infinity, ease: 'easeInOut', delay: 2 }, opacity: { duration: 3.5, repeat: Infinity, ease: 'easeInOut', delay: 0.8 } }}
+          className="absolute top-20 right-4 md:right-10"
+          style={{ rotate: -mousePos.x * 15, filter: 'url(#lotus-glow)', transition: 'rotate 0.3s ease-out' }}
           width="120" height="120" viewBox="0 0 120 120"
         >
           <path d="M120,0 L120,120" stroke="#E8A317" strokeWidth="2"/>
@@ -68,9 +96,10 @@ const Hero: React.FC<HeroProps> = ({ isPlaying }) => {
 
         {/* Bottom-left */}
         <motion.svg
-          animate={{ y: [0, 6, 0], rotate: [0, -2, 0] }}
-          transition={{ duration: 11, repeat: Infinity, ease: 'easeInOut', delay: 4 }}
-          className="absolute bottom-10 left-4 md:left-10 opacity-30"
+          animate={{ y: [0, 6, 0], opacity: [0.3, 0.7, 0.3] }}
+          transition={{ y: { duration: 11, repeat: Infinity, ease: 'easeInOut', delay: 4 }, opacity: { duration: 4, repeat: Infinity, ease: 'easeInOut', delay: 1.6 } }}
+          className="absolute bottom-10 left-4 md:left-10"
+          style={{ rotate: mousePos.x * 15, filter: 'url(#lotus-glow)', transition: 'rotate 0.3s ease-out' }}
           width="120" height="120" viewBox="0 0 120 120"
         >
           <path d="M0,120 L0,0" stroke="#E8A317" strokeWidth="2"/>
@@ -87,9 +116,10 @@ const Hero: React.FC<HeroProps> = ({ isPlaying }) => {
 
         {/* Bottom-right */}
         <motion.svg
-          animate={{ y: [0, 6, 0], rotate: [0, 2, 0] }}
-          transition={{ duration: 13, repeat: Infinity, ease: 'easeInOut', delay: 6 }}
-          className="absolute bottom-10 right-4 md:right-10 opacity-30"
+          animate={{ y: [0, 6, 0], opacity: [0.3, 0.7, 0.3] }}
+          transition={{ y: { duration: 13, repeat: Infinity, ease: 'easeInOut', delay: 6 }, opacity: { duration: 3.2, repeat: Infinity, ease: 'easeInOut', delay: 2.4 } }}
+          className="absolute bottom-10 right-4 md:right-10"
+          style={{ rotate: -mousePos.x * 15, filter: 'url(#lotus-glow)', transition: 'rotate 0.3s ease-out' }}
           width="120" height="120" viewBox="0 0 120 120"
         >
           <path d="M120,120 L120,0" stroke="#E8A317" strokeWidth="2"/>
