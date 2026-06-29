@@ -67,7 +67,7 @@ const About: React.FC = () => {
             transition={{ duration: 0.8 }}
             className="max-w-2xl mx-auto"
           >
-            <div className="relative">
+            <div className="relative w-full">
               <div className="absolute -inset-4 border-2 border-madhubani-red/30" />
               <div className="absolute -inset-2 border border-madhubani-yellow/40" />
               
@@ -92,7 +92,7 @@ const About: React.FC = () => {
                 <path d="M5,15 Q5,5 15,5" fill="none" stroke="#C41E7F" strokeWidth="1.5"/>
               </svg>
 
-              <div className="w-full aspect-[4/3] bg-madhubani-black overflow-hidden">
+              <div className="w-full bg-madhubani-black overflow-hidden" style={{ aspectRatio: '3/4' }}>
                 {slides.map((slide, i) => (
                   <div
                     key={i}

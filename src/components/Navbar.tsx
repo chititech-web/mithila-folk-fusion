@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { Menu, X, Play, Pause } from 'lucide-react';
 
 const navLinks = [
   { label: 'Home', href: '#home' },
   { label: 'About', href: '#about' },
   { label: 'Gallery', href: '#gallery' },
+  { label: 'Portfolio', href: '/portfolio', isRoute: true },
   { label: 'The Art', href: '#art-form' },
   { label: 'Exhibitions', href: '#exhibitions' },
   { label: 'Commission', href: '#commission' },
@@ -94,17 +96,34 @@ const Navbar: React.FC<NavbarProps> = ({ isPlaying, togglePlay }) => {
               </svg>
               
               {navLinks.map((link, i) => (
-                <motion.a
-                  key={link.label}
-                  href={link.href}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.1 }}
-                  onClick={() => setIsMobileOpen(false)}
-                  className="text-xl font-playfair text-madhubani-black hover:text-madhubani-red transition-colors py-2 border-b border-madhubani-red/10 w-full text-center"
-                >
-                  {link.label}
-                </motion.a>
+                link.isRoute ? (
+                  <motion.div
+                    key={link.label}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.1 }}
+                  >
+                    <Link
+                      to={link.href}
+                      onClick={() => setIsMobileOpen(false)}
+                      className="text-xl font-playfair text-madhubani-black hover:text-madhubani-red transition-colors py-2 border-b border-madhubani-red/10 w-full text-center block"
+                    >
+                      {link.label}
+                    </Link>
+                  </motion.div>
+                ) : (
+                  <motion.a
+                    key={link.label}
+                    href={link.href}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.1 }}
+                    onClick={() => setIsMobileOpen(false)}
+                    className="text-xl font-playfair text-madhubani-black hover:text-madhubani-red transition-colors py-2 border-b border-madhubani-red/10 w-full text-center"
+                  >
+                    {link.label}
+                  </motion.a>
+                )
               ))}
             </div>
           </motion.div>

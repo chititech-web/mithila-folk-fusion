@@ -11,23 +11,7 @@ const Footer: React.FC = () => {
           {/* Brand */}
           <div className="space-y-4 text-center md:text-left">
             <div className="flex items-center gap-3 justify-center md:justify-start">
-              <svg width="40" height="40" viewBox="0 0 40 40">
-                <circle cx="20" cy="20" r="18" fill="none" stroke="#E8A317" strokeWidth="1.5"/>
-                <circle cx="20" cy="20" r="12" fill="none" stroke="#C41E7F" strokeWidth="1"/>
-                {[0, 45, 90, 135, 180, 225, 270, 315].map((angle) => (
-                  <ellipse
-                    key={angle}
-                    cx="20" cy="12"
-                    rx="3" ry="8"
-                    fill="none"
-                    stroke="#E8A317"
-                    strokeWidth="0.8"
-                    transform={`rotate(${angle},20,20)`}
-                  />
-                ))}
-                <circle cx="20" cy="20" r="4" fill="#E8A317" opacity="0.5"/>
-                <circle cx="20" cy="20" r="2" fill="#C41E7F"/>
-              </svg>
+              <img src="/images/mithila-folk-fusion-logo.png" alt="Mithila Folk Art" className="w-10 h-10" />
               <div>
                 <h3 className="font-cinzel text-lg text-madhubani-yellow tracking-wider">Mithila Folk Art</h3>
                 <p className="font-cormorant text-xs text-cream/50 tracking-widest uppercase">by Shivangi Singh</p>
@@ -109,8 +93,12 @@ const Footer: React.FC = () => {
           <p className="font-cormorant text-cream/20 text-xs italic">
             "Every stroke carries the soul of Mithila" ✿
           </p>
-          <p className="font-cormorant text-cream/20 text-xs">
-            Built with love by{' '}
+          <p className="font-cormorant text-cream/20 text-sm">
+            Built with{' '}
+            <svg className="inline w-3 h-3 fill-madhubani-red text-madhubani-red -mt-0.5" viewBox="0 0 24 24">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+            </svg>
+            {' '}by{' '}
             <a
               href="https://chiti.tech"
               target="_blank"

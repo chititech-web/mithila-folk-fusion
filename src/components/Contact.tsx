@@ -64,13 +64,13 @@ const Contact: React.FC = () => {
                 { icon: <Phone size={20} />, label: 'Phone', value: 'Available on request', borderCls: 'border-madhubani-teal/30', textCls: 'text-madhubani-teal', hoverBgCls: 'group-hover:bg-madhubani-teal' },
                 { icon: <MapPin size={20} />, label: 'Location', value: 'New York / New Jersey, USA', borderCls: 'border-madhubani-magenta/30', textCls: 'text-madhubani-magenta', hoverBgCls: 'group-hover:bg-madhubani-magenta' },
               ].map((item) => (
-                <div key={item.label} className="flex items-center gap-4 group justify-center">
-                  <div className={`w-12 h-12 border ${item.borderCls} flex items-center justify-center ${item.textCls} ${item.hoverBgCls} group-hover:text-cream transition-all duration-300`}>
+                <div key={item.label} className="flex items-center gap-4 group max-w-md mx-auto">
+                  <div className={`w-12 h-12 border ${item.borderCls} flex items-center justify-center ${item.textCls} ${item.hoverBgCls} group-hover:text-cream transition-all duration-300 shrink-0`}>
                     {item.icon}
                   </div>
-                  <div className="text-left">
+                  <div className="text-left min-w-0">
                     <p className="font-playfair text-sm text-madhubani-black/50 uppercase tracking-wider">{item.label}</p>
-                    <p className="font-cormorant text-lg text-madhubani-black">{item.value}</p>
+                    <p className="font-cormorant text-lg text-madhubani-black truncate">{item.value}</p>
                   </div>
                 </div>
               ))}

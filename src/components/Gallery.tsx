@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { X, ZoomIn } from 'lucide-react';
 import { SectionDivider } from './MadhubaniBorder';
 
@@ -56,13 +57,81 @@ const artworks = [
 
 const categories = ['All', 'Nature & Birds', 'Mythology', 'Sacred Motifs', 'Cultural Fusion'];
 
+const CornerOrnament: React.FC<{ className: string }> = ({ className }) => (
+  <svg className={`absolute z-10 pointer-events-none ${className}`} width="28" height="28" viewBox="0 0 28 28">
+    <path d="M0,14 Q0,0 14,0" fill="none" stroke="#8B1A1A" strokeWidth="1.2" />
+    <circle cx="3" cy="3" r="2" fill="#E8A317" />
+    <path d="M4,10 Q4,4 10,4" fill="none" stroke="#C41E7F" strokeWidth="0.8" />
+  </svg>
+);
+
 const Gallery: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [selectedArt, setSelectedArt] = useState<typeof artworks[0] | null>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeftPos, setScrollLeftPos] = useState(0);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
 
-  const filtered = selectedCategory === 'All' 
-    ? artworks 
+  const filtered = selectedCategory === 'All'
+    ? artworks
     : artworks.filter(a => a.category === selectedCategory);
+
+  const CARD_WIDTH = 352;
+
+  const checkScroll = () => {
+    if (!scrollRef.current) return;
+    const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
+    setCanScrollLeft(scrollLeft > 10);
+    setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
+  };
+
+  const smoothScroll = (target: number) => {
+    if (!scrollRef.current) return;
+    scrollRef.current.scrollTo({ left: target, behavior: 'smooth' });
+  };
+
+  const scrollByCards = (direction: number) => {
+    if (!scrollRef.current) return;
+    const target = scrollRef.current.scrollLeft + direction * CARD_WIDTH * 2;
+    smoothScroll(target);
+  };
+
+  const handleWheel = (e: React.WheelEvent) => {
+    if (!scrollRef.current) return;
+    const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
+    const atStart = scrollLeft <= 0 && e.deltaY < 0;
+    const atEnd = scrollLeft >= scrollWidth - clientWidth - 1 && e.deltaY > 0;
+    if (!atStart && !atEnd) {
+      e.preventDefault();
+      scrollRef.current.scrollLeft += e.deltaY * 1.5;
+      checkScroll();
+    }
+  };
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    if (!scrollRef.current) return;
+    setIsDragging(true);
+    setStartX(e.pageX - scrollRef.current.offsetLeft);
+    setScrollLeftPos(scrollRef.current.scrollLeft);
+    scrollRef.current.style.scrollBehavior = 'auto';
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging || !scrollRef.current) return;
+    e.preventDefault();
+    const x = e.pageX - scrollRef.current.offsetLeft;
+    const walk = (x - startX) * 1.5;
+    scrollRef.current.scrollLeft = scrollLeftPos - walk;
+    checkScroll();
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+    if (scrollRef.current) scrollRef.current.style.scrollBehavior = 'smooth';
+  };
 
   return (
     <section id="gallery" className="relative py-28 md:py-44 bg-gradient-to-b from-cream to-cream-dark overflow-hidden">
@@ -98,7 +167,7 @@ const Gallery: React.FC = () => {
           </h2>
           <SectionDivider variant="peacock" />
           <p className="font-cormorant text-lg text-madhubani-black/60 max-w-2xl mx-auto mt-4">
-            Each artwork is a conversation between ancient Mithila traditions and the contemporary soul — 
+            Each artwork is a conversation between ancient Mithila traditions and the contemporary soul —
             hand-painted with love, patience, and reverence for the craft
           </p>
         </motion.div>
@@ -109,71 +178,150 @@ const Gallery: React.FC = () => {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           className="flex flex-wrap justify-center gap-2 md:gap-4 mb-16"
-          >
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setSelectedCategory(cat)}
-                className={`px-5 py-2.5 font-playfair text-sm tracking-wider transition-all duration-300 border ${
-                  selectedCategory === cat
-                    ? 'bg-madhubani-red text-cream border-madhubani-red'
-                    : 'bg-transparent text-madhubani-black/70 border-madhubani-red/30 hover:border-madhubani-red hover:text-madhubani-red'
-                }`}
+        >
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              onClick={() => setSelectedCategory(cat)}
+              className={`px-5 py-2.5 font-playfair text-sm tracking-wider transition-all duration-300 border ${
+                selectedCategory === cat
+                  ? 'bg-madhubani-red text-cream border-madhubani-red'
+                  : 'bg-transparent text-madhubani-black/70 border-madhubani-red/30 hover:border-madhubani-red hover:text-madhubani-red'
+              }`}
             >
               {cat}
             </button>
           ))}
         </motion.div>
 
-        {/* Gallery Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          <AnimatePresence mode="popLayout">
-            {filtered.map((artwork, index) => (
-              <motion.div
-                key={artwork.id}
-                layout
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="gallery-card group cursor-pointer bg-cream-light"
-                onClick={() => setSelectedArt(artwork)}
-              >
-                <div className="relative overflow-hidden">
-                  <img
-                    src={artwork.src}
-                    alt={artwork.title}
-                    className="w-full h-64 md:h-72 object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
-                  
-                  {/* Hover overlay */}
-                  <div className="absolute inset-0 bg-madhubani-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-400 flex items-center justify-center">
-                    <motion.div
-                      initial={{ scale: 0 }}
-                      whileHover={{ scale: 1.1 }}
-                      className="w-14 h-14 rounded-full border-2 border-cream flex items-center justify-center"
-                    >
-                      <ZoomIn size={24} className="text-cream" />
-                    </motion.div>
-                  </div>
+        {/* Gallery — Horizontal Scroll with nav buttons */}
+        <div className="relative group/scroll">
+          {/* Left navigation button */}
+          {canScrollLeft && (
+            <button
+              onClick={() => scrollByCards(-1)}
+              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 z-20 w-14 h-14 bg-cream/90 backdrop-blur-sm border-2 border-madhubani-red/30 text-madhubani-red flex items-center justify-center hover:bg-madhubani-red hover:text-cream transition-all duration-300 shadow-lg"
+              aria-label="Scroll left"
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M15 18l-6-6 6-6" />
+              </svg>
+            </button>
+          )}
 
-                  {/* Category badge */}
-                  <div className="absolute top-3 left-3 bg-madhubani-red/90 backdrop-blur-sm px-3 py-1">
-                    <span className="text-cream text-xs font-playfair tracking-wider">{artwork.category}</span>
-                  </div>
-                </div>
+          {/* Right navigation button */}
+          {canScrollRight && (
+            <button
+              onClick={() => scrollByCards(1)}
+              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 z-20 w-14 h-14 bg-cream/90 backdrop-blur-sm border-2 border-madhubani-red/30 text-madhubani-red flex items-center justify-center hover:bg-madhubani-red hover:text-cream transition-all duration-300 shadow-lg"
+              aria-label="Scroll right"
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M9 18l6-6-6-6" />
+              </svg>
+            </button>
+          )}
 
-                {/* Card info */}
-                <div className="p-6 border-t-2 border-madhubani-red/20 text-center">
-                  <h3 className="font-cinzel text-lg text-madhubani-black group-hover:text-madhubani-red transition-colors">
-                    {artwork.title}
-                  </h3>
-                  <p className="font-cormorant text-sm text-madhubani-teal mt-1">{artwork.medium}</p>
-                </div>
-              </motion.div>
-            ))}
-          </AnimatePresence>
+          {/* Left fade */}
+          {canScrollLeft && (
+            <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-cream-dark to-transparent z-10 pointer-events-none" />
+          )}
+          {/* Right fade */}
+          {canScrollRight && (
+            <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-cream-dark to-transparent z-10 pointer-events-none" />
+          )}
+
+          <div
+            ref={scrollRef}
+            onWheel={handleWheel}
+            onMouseDown={handleMouseDown}
+            onMouseMove={handleMouseMove}
+            onMouseUp={handleMouseUp}
+            onMouseLeave={handleMouseUp}
+            onScroll={checkScroll}
+            className={`flex gap-8 md:gap-10 overflow-x-auto pb-6 scrollbar-hide px-8 select-none ${
+              isDragging ? 'cursor-grabbing' : 'cursor-grab'
+            }`}
+            style={{ scrollBehavior: 'smooth' }}
+          >
+            <AnimatePresence mode="popLayout">
+              {filtered.map((artwork, index) => (
+                <motion.div
+                  key={artwork.id}
+                  layout
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="group shrink-0 w-80 md:w-[22rem]"
+                  onClick={() => { if (!isDragging) setSelectedArt(artwork); }}
+                >
+                  {/* Museum-style card with decorative frame */}
+                  <div className="relative border border-madhubani-red/20 bg-cream-light p-6 md:p-8 transition-all duration-500 group-hover:shadow-lg group-hover:shadow-madhubani-red/10">
+                    {/* Corner ornaments */}
+                    <CornerOrnament className="top-2 left-2" />
+                    <CornerOrnament className="top-2 right-2 -scale-x-100" />
+                    <CornerOrnament className="bottom-2 left-2 -scale-y-100" />
+                    <CornerOrnament className="bottom-2 right-2 scale-[-1]" />
+
+                    {/* Inner image frame */}
+                    <div className="relative overflow-hidden border border-madhubani-red/10 m-2 mb-6">
+                      <img
+                        src={artwork.src}
+                        alt={artwork.title}
+                        className="w-full h-80 md:h-96 object-cover transition-all duration-700 grayscale group-hover:grayscale-0 group-hover:scale-105"
+                      />
+
+                      {/* Hover overlay */}
+                      <div className="absolute inset-0 bg-madhubani-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-400 flex items-center justify-center">
+                        <div className="w-14 h-14 rounded-full border-2 border-cream/80 flex items-center justify-center backdrop-blur-sm">
+                          <ZoomIn size={24} className="text-cream" />
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Decorative divider */}
+                    <div className="flex items-center justify-center gap-3 mb-5">
+                      <div className="flex-1 h-px bg-gradient-to-r from-transparent via-madhubani-red/20 to-transparent" />
+                      <svg width="16" height="16" viewBox="0 0 16 16">
+                        <circle cx="8" cy="8" r="3" fill="none" stroke="#C41E7F" strokeWidth="0.8" />
+                        <circle cx="8" cy="8" r="1" fill="#E8A317" />
+                      </svg>
+                      <div className="flex-1 h-px bg-gradient-to-r from-transparent via-madhubani-red/20 to-transparent" />
+                    </div>
+
+                    {/* Card info */}
+                    <div className="text-center space-y-2 px-2">
+                      <h3 className="font-cinzel text-lg md:text-xl text-madhubani-black group-hover:text-madhubani-red transition-colors">
+                        {artwork.title}
+                      </h3>
+                      <p className="font-cormorant text-sm text-madhubani-teal">{artwork.medium}</p>
+                      <p className="font-playfair text-xs text-madhubani-black/40 tracking-widest uppercase">{artwork.category}</p>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </div>
         </div>
+
+        {/* View Full Portfolio link */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="text-center mt-12"
+        >
+          <Link
+            to="/portfolio"
+            className="inline-flex items-center gap-2 font-playfair text-sm tracking-wider text-madhubani-red border-b border-madhubani-red/40 pb-1 hover:border-madhubani-red transition-colors"
+          >
+            View Full Portfolio
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <path d="M6 3l5 5-5 5" />
+            </svg>
+          </Link>
+        </motion.div>
       </div>
 
       {/* Lightbox */}
