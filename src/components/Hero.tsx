@@ -19,7 +19,7 @@ const Hero: React.FC<HeroProps> = ({ isPlaying }) => {
           autoPlay muted loop playsInline
           className="absolute min-w-full min-h-full"
           style={{
-            transform: 'translate(-50%, -50%) rotate(90deg) scale(1.333)',
+            transform: 'translate(-50%, -50%) rotate(90deg) scale(1.5)',
             top: '50%',
             left: '50%',
             position: 'absolute',

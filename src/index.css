@@ -187,6 +187,12 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
+
+  @media (hover: none) {
+    [class*="grayscale"] {
+      filter: grayscale(0) !important;
+    }
+  }
 }
 
 @keyframes patternScroll {
