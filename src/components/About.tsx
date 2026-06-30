@@ -176,19 +176,19 @@ const About: React.FC = () => {
                   Achievements & <span className="text-madhubani-red">Recognition</span>
                 </h3>
               </div>
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-5 max-w-5xl mx-auto">
                 {[
-                  { icon: Globe, label: 'United Nations', detail: 'Exhibition, New York' },
-                  { icon: Landmark, label: 'EU Headquarters', detail: 'Brussels, 2026' },
-                  { icon: Building2, label: 'Gracie Mansion', detail: 'Cultural Showcase, NYC' },
-                  { icon: MapPin, label: 'Times Square & Madison Ave', detail: 'Public Art, NYC' },
-                  { icon: Building, label: 'FDNY Headquarters', detail: 'Exhibition, NYC' },
-                  { icon: Paintbrush, label: 'Watchung Art Center', detail: '"Magnetism" Exhibition, NJ' },
-                  { icon: Award, label: 'Manville Art Council', detail: 'Curated Exhibition, NJ' },
-                  { icon: Leaf, label: 'Art for SDGs', detail: 'Mithila Center USA' },
-                  { icon: Users, label: 'UCNJ Teen Arts Festival', detail: '1,000+ Students' },
-                  { icon: Award, label: 'Women Entrepreneur', detail: 'Greater NY Chamber of Commerce' },
-                  { icon: Star, label: 'Top 35 Art Influencer', detail: 'Feedspot, 2025' },
+                  { icon: Globe, label: 'United Nations', detail: 'Exhibition, New York', desc: 'Exhibited Mithila folk art at the United Nations Headquarters, showcasing cultural heritage on an international diplomatic platform.' },
+                  { icon: Landmark, label: 'EU Headquarters', detail: 'Brussels, 2026', desc: 'Featured at the EU Headquarters in Brussels, strengthening international presence as a cultural ambassador of Mithila art.' },
+                  { icon: Building2, label: 'Gracie Mansion', detail: 'Cultural Showcase, NYC', desc: 'Participated in cultural showcase at the official residence of the Mayor of New York City.' },
+                  { icon: MapPin, label: 'Times Square & Madison Ave', detail: 'Public Art, NYC', desc: 'Public art visibility in Times Square and Madison Avenue events, bringing Mithila art to iconic NYC landmarks.' },
+                  { icon: Building, label: 'FDNY Headquarters', detail: 'Exhibition, NYC', desc: 'Presented artwork at the FDNY Headquarters in New York City.' },
+                  { icon: Paintbrush, label: 'Watchung Art Center', detail: '"Magnetism" Exhibition, NJ', desc: 'Participated in the "Magnetism" curated exhibition at Watchung Art Center, New Jersey.' },
+                  { icon: Award, label: 'Manville Art Council', detail: 'Curated Exhibition, NJ', desc: 'Exhibited in curated exhibitions at Manville Art Council, New Jersey.' },
+                  { icon: Leaf, label: 'Art for SDGs', detail: 'Mithila Center USA', desc: 'Actively involved with Mithila Center USA "Art for SDGs" exhibition series, contributing to global conversations around sustainability and cultural preservation.' },
+                  { icon: Users, label: 'UCNJ Teen Arts Festival', detail: '1,000+ Students', desc: 'Conducted a Mithila folk art workshop at UCNJ Teen Arts Festival, introducing traditional art forms to over a thousand students.' },
+                  { icon: Award, label: 'Women Entrepreneur', detail: 'Greater NY Chamber of Commerce', desc: 'Recognized as a Women Entrepreneur in the Arts by the Greater New York Chamber of Commerce.' },
+                  { icon: Star, label: 'Top 35 Art Influencer', detail: 'Feedspot, 2025', desc: 'Listed among the Top 35 Indian American Art Influencers by Feedspot (2025).' },
                 ].map((item, i) => {
                   const Icon = item.icon;
                   return (
@@ -198,14 +198,25 @@ const About: React.FC = () => {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.4, delay: i * 0.05 }}
-                      className="group border border-madhubani-red/20 bg-cream-light p-4 hover:border-madhubani-red/40 transition-all duration-300"
+                      className="flip-card group/flip h-48 md:h-52"
+                      tabIndex={0}
                     >
-                      <div className="flex flex-col items-center text-center gap-2">
-                        <div className="w-10 h-10 flex items-center justify-center bg-madhubani-red/10 text-madhubani-red group-hover:bg-madhubani-red group-hover:text-cream transition-all duration-300">
-                          <Icon size={18} />
+                      <div className="flip-card-inner w-full h-full">
+                        {/* Front */}
+                        <div className="flip-card-front absolute inset-0 border border-madhubani-red/20 bg-cream-light p-4 md:p-5 hover:border-madhubani-red/40 transition-colors duration-300 flex flex-col items-center justify-center text-center gap-3">
+                          <div className="w-12 h-12 flex items-center justify-center bg-madhubani-red/10 text-madhubani-red group-hover/flip:bg-madhubani-red group-hover/flip:text-cream transition-all duration-300">
+                            <Icon size={22} />
+                          </div>
+                          <div>
+                            <p className="font-playfair text-sm md:text-base text-madhubani-black font-semibold leading-tight">{item.label}</p>
+                            <p className="font-cormorant text-xs md:text-sm text-madhubani-teal mt-1">{item.detail}</p>
+                          </div>
+                          <span className="font-cormorant text-[10px] text-madhubani-red/50 tracking-wider uppercase">Hover to explore</span>
                         </div>
-                        <p className="font-playfair text-sm text-madhubani-black font-semibold leading-tight">{item.label}</p>
-                        <p className="font-cormorant text-xs text-madhubani-teal">{item.detail}</p>
+                        {/* Back */}
+                        <div className="flip-card-back absolute inset-0 border border-madhubani-red/30 bg-madhubani-red text-cream p-4 md:p-5 flex flex-col items-center justify-center text-center gap-2">
+                          <p className="font-cormorant text-xs md:text-sm leading-relaxed">{item.desc}</p>
+                        </div>
                       </div>
                     </motion.div>
                   );
