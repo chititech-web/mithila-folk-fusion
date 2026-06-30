@@ -179,7 +179,7 @@ const About: React.FC = () => {
                 Achievements & <span className="text-madhubani-red">Recognition</span>
               </h3>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-5 max-w-5xl mx-auto">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-5 md:gap-6 max-w-6xl mx-auto">
               {[
                 { icon: Globe, label: 'United Nations', detail: 'Exhibition, New York', desc: 'Exhibited Mithila folk art at the United Nations Headquarters, showcasing cultural heritage on an international diplomatic platform.' },
                 { icon: Landmark, label: 'EU Headquarters', detail: 'Brussels, 2026', desc: 'Featured at the EU Headquarters in Brussels, strengthening international presence as a cultural ambassador of Mithila art.' },
@@ -201,22 +201,52 @@ const About: React.FC = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: i * 0.05 }}
-                    className="flip-card group/flip h-48 md:h-52"
+                    className="flip-card group/flip h-56 md:h-64"
                     tabIndex={0}
                   >
-                    <div className="flip-card-inner w-full h-full">
-                      <div className="flip-card-front absolute inset-0 border border-madhubani-red/20 bg-cream-light p-4 md:p-5 hover:border-madhubani-red/40 transition-colors duration-300 flex flex-col items-center justify-center text-center gap-3">
-                        <div className="w-12 h-12 flex items-center justify-center bg-madhubani-red/10 text-madhubani-red group-hover/flip:bg-madhubani-red group-hover/flip:text-cream transition-all duration-300">
-                          <Icon size={22} />
+                    <div className="flip-card-inner w-full h-full relative">
+                      <div className="flip-card-front absolute inset-0 bg-cream-light p-5 md:p-6 transition-colors duration-300 flex flex-col items-center justify-center text-center gap-3">
+                        {/* Gradient top bar */}
+                        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-madhubani-red via-madhubani-magenta to-madhubani-teal" />
+
+                        {/* Outer decorative border */}
+                        <div className="absolute inset-2 border border-madhubani-red/20 pointer-events-none" />
+                        <div className="absolute inset-3 border border-madhubani-yellow/20 pointer-events-none" />
+
+                        {/* Corner lotuses */}
+                        <svg className="absolute -top-1 -left-1 z-10 pointer-events-none" width="24" height="24" viewBox="0 0 24 24">
+                          <path d="M0,12 Q0,0 12,0" fill="none" stroke="#8B1A1A" strokeWidth="1.5"/>
+                          <circle cx="2" cy="2" r="2" fill="#E8A317"/>
+                          <path d="M3,9 Q3,3 9,3" fill="none" stroke="#C41E7F" strokeWidth="1"/>
+                        </svg>
+                        <svg className="absolute -top-1 -right-1 z-10 pointer-events-none" width="24" height="24" viewBox="0 0 24 24" style={{ transform: 'scaleX(-1)' }}>
+                          <path d="M0,12 Q0,0 12,0" fill="none" stroke="#8B1A1A" strokeWidth="1.5"/>
+                          <circle cx="2" cy="2" r="2" fill="#E8A317"/>
+                          <path d="M3,9 Q3,3 9,3" fill="none" stroke="#C41E7F" strokeWidth="1"/>
+                        </svg>
+                        <svg className="absolute -bottom-1 -left-1 z-10 pointer-events-none" width="24" height="24" viewBox="0 0 24 24" style={{ transform: 'scaleY(-1)' }}>
+                          <path d="M0,12 Q0,0 12,0" fill="none" stroke="#8B1A1A" strokeWidth="1.5"/>
+                          <circle cx="2" cy="2" r="2" fill="#E8A317"/>
+                          <path d="M3,9 Q3,3 9,3" fill="none" stroke="#C41E7F" strokeWidth="1"/>
+                        </svg>
+                        <svg className="absolute -bottom-1 -right-1 z-10 pointer-events-none" width="24" height="24" viewBox="0 0 24 24" style={{ transform: 'scale(-1)' }}>
+                          <path d="M0,12 Q0,0 12,0" fill="none" stroke="#8B1A1A" strokeWidth="1.5"/>
+                          <circle cx="2" cy="2" r="2" fill="#E8A317"/>
+                          <path d="M3,9 Q3,3 9,3" fill="none" stroke="#C41E7F" strokeWidth="1"/>
+                        </svg>
+
+                        <div className="w-14 h-14 md:w-16 md:h-16 flex items-center justify-center bg-madhubani-red/10 text-madhubani-red group-hover/flip:bg-madhubani-red group-hover/flip:text-cream transition-all duration-300 mt-3">
+                          <Icon size={26} />
                         </div>
                         <div>
-                          <p className="font-playfair text-sm md:text-base text-madhubani-black font-semibold leading-tight">{item.label}</p>
-                          <p className="font-cormorant text-xs md:text-sm text-madhubani-teal mt-1">{item.detail}</p>
+                          <p className="font-playfair text-base md:text-lg text-madhubani-black font-semibold leading-tight">{item.label}</p>
+                          <p className="font-cormorant text-sm md:text-base text-madhubani-teal mt-1">{item.detail}</p>
                         </div>
-                        <span className="font-cormorant text-[10px] text-madhubani-red/50 tracking-wider uppercase">Hover to explore</span>
+                        <span className="font-cormorant text-[11px] md:text-xs text-madhubani-red/50 tracking-wider uppercase">Hover to explore</span>
                       </div>
-                      <div className="flip-card-back absolute inset-0 border border-madhubani-red/30 bg-madhubani-red text-cream p-4 md:p-5 flex flex-col items-center justify-center text-center gap-2">
-                        <p className="font-cormorant text-xs md:text-sm leading-relaxed">{item.desc}</p>
+                      <div className="flip-card-back absolute inset-0 bg-madhubani-red text-cream p-5 md:p-6 flex flex-col items-center justify-center text-center gap-2">
+                        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-madhubani-yellow via-cream to-madhubani-yellow opacity-60" />
+                        <p className="font-cormorant text-sm md:text-base leading-relaxed">{item.desc}</p>
                       </div>
                     </div>
                   </motion.div>
