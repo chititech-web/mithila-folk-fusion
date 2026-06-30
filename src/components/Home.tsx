@@ -5,6 +5,7 @@ import About from './About';
 import Gallery from './Gallery';
 import ArtForm from './ArtForm';
 import Exhibitions from './Exhibitions';
+import ExhibitionsGallery from './ExhibitionsGallery';
 import Testimonials from './Testimonials';
 import Commission from './Commission';
 import Contact from './Contact';
@@ -38,6 +39,7 @@ const Home: React.FC = () => {
       <Gallery />
       <ArtForm />
       <Exhibitions />
+      <ExhibitionsGallery />
       <Testimonials />
       <Commission />
       <Contact />

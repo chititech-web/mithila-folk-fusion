@@ -4,12 +4,12 @@ import { CameraShy } from 'camerashy';
 import { SectionDivider } from './MadhubaniBorder';
 
 const slides = [
-  { type: 'image', src: '/images/profile-1.jpg' },
+  { type: 'image', src: '/images/profile-headshot.jpg' },
+  { type: 'image', src: '/images/eu-podium.jpg' },
+  { type: 'image', src: '/images/un-outdoor.jpg' },
+  { type: 'image', src: '/images/profile-office.jpg' },
+  { type: 'image', src: '/images/profile-exhibition.png' },
   { type: 'video', src: '/images/profile-video.mp4' },
-  { type: 'image', src: '/images/profile-2.png' },
-  { type: 'image', src: '/images/profile-3.png' },
-  { type: 'image', src: '/images/profile-4.png' },
-  { type: 'image', src: '/images/profile-5.png' },
 ];
 
 const SLIDE_INTERVAL = 4000;
