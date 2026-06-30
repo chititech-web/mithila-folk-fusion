@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { CameraShy } from 'camerashy';
+import { Globe, Landmark, Building2, MapPin, Building, Paintbrush, Leaf, Users, Award, Star } from 'lucide-react';
 import { SectionDivider } from './MadhubaniBorder';
 
 const slides = [
@@ -167,21 +168,50 @@ const About: React.FC = () => {
               Through her art, she explores identity, migration, women's narratives, ecology, and climate resilience—transforming folk visual language into a powerful medium for cultural dialogue and social reflection.
             </p>
 
-            <p className="font-cormorant text-lg text-madhubani-black/70 leading-relaxed">
-              Shivangi's work has been exhibited and recognized on prominent national and international platforms. Selected highlights include exhibitions at the United Nations Headquarters, New York, cultural showcases at Gracie Mansion, NYC, and public art visibility in Times Square and Madison Avenue events. She has also presented work at the FDNY Headquarters (NYC) and participated in curated exhibitions across New Jersey, including the Watchung Art Center ("Magnetism" exhibition) and Manville Art Council exhibitions.
-            </p>
-
-            <p className="font-cormorant text-lg text-madhubani-black/70 leading-relaxed">
-              In 2026, her work was featured at the EU Headquarters in Brussels, further strengthening her international presence as a cultural ambassador of Mithila art. She has also been actively involved with the Mithila Center USA "Art for SDGs" exhibition series, contributing to global conversations around sustainability, heritage, and cultural preservation.
-            </p>
-
-            <p className="font-cormorant text-lg text-madhubani-black/70 leading-relaxed">
-              Her community engagement includes large-scale educational outreach, most notably a Mithila folk art workshop at the UCNJ Teen Arts Festival (Union College of Union County, NJ), where she introduced traditional art forms to over a thousand students, fostering cultural appreciation among youth.
-            </p>
-
-            <p className="font-cormorant text-lg text-madhubani-black/70 leading-relaxed">
-              Shivangi Singh has been recognized as a Women Entrepreneur in the Arts by the Greater New York Chamber of Commerce and listed among the Top 35 Indian American Art Influencers by Feedspot (2025). Her work continues to be acknowledged for its cultural depth, narrative strength, and contemporary relevance.
-            </p>
+            {/* Achievements & Recognition */}
+            <div className="space-y-8">
+              <div className="text-center">
+                <SectionDivider variant="lotus" />
+                <h3 className="font-cinzel text-xl md:text-2xl text-madhubani-black mt-4">
+                  Achievements & <span className="text-madhubani-red">Recognition</span>
+                </h3>
+              </div>
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                {[
+                  { icon: Globe, label: 'United Nations', detail: 'Exhibition, New York' },
+                  { icon: Landmark, label: 'EU Headquarters', detail: 'Brussels, 2026' },
+                  { icon: Building2, label: 'Gracie Mansion', detail: 'Cultural Showcase, NYC' },
+                  { icon: MapPin, label: 'Times Square & Madison Ave', detail: 'Public Art, NYC' },
+                  { icon: Building, label: 'FDNY Headquarters', detail: 'Exhibition, NYC' },
+                  { icon: Paintbrush, label: 'Watchung Art Center', detail: '"Magnetism" Exhibition, NJ' },
+                  { icon: Award, label: 'Manville Art Council', detail: 'Curated Exhibition, NJ' },
+                  { icon: Leaf, label: 'Art for SDGs', detail: 'Mithila Center USA' },
+                  { icon: Users, label: 'UCNJ Teen Arts Festival', detail: '1,000+ Students' },
+                  { icon: Award, label: 'Women Entrepreneur', detail: 'Greater NY Chamber of Commerce' },
+                  { icon: Star, label: 'Top 35 Art Influencer', detail: 'Feedspot, 2025' },
+                ].map((item, i) => {
+                  const Icon = item.icon;
+                  return (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: i * 0.05 }}
+                      className="group border border-madhubani-red/20 bg-cream-light p-4 hover:border-madhubani-red/40 transition-all duration-300"
+                    >
+                      <div className="flex flex-col items-center text-center gap-2">
+                        <div className="w-10 h-10 flex items-center justify-center bg-madhubani-red/10 text-madhubani-red group-hover:bg-madhubani-red group-hover:text-cream transition-all duration-300">
+                          <Icon size={18} />
+                        </div>
+                        <p className="font-playfair text-sm text-madhubani-black font-semibold leading-tight">{item.label}</p>
+                        <p className="font-cormorant text-xs text-madhubani-teal">{item.detail}</p>
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </div>
+            </div>
 
             <p className="font-cormorant text-lg text-madhubani-black/70 leading-relaxed">
               Through MithilaFolkFusions, she continues to preserve and evolve Mithila heritage bridging tradition and modernity while amplifying community voices through art.
