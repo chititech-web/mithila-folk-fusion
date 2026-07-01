@@ -177,14 +177,14 @@ const About: React.FC = () => {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-12 gap-5 md:gap-6">
               {[
-                { icon: Globe, label: 'United Nations', detail: 'Exhibition, New York', desc: 'Exhibited Mithila folk art at the United Nations Headquarters, New York', quote: '"To stand at the UN and draw the same motifs my grandmother drew — that is what Mithila means: it belongs anywhere."' },
-                { icon: Landmark, label: 'EU Headquarters', detail: 'Brussels, 2026', desc: 'Featured artist at the European Union Headquarters, Brussels', quote: '"Art that travels across oceans without a passport — Mithila speaks to anyone who stops to look."' },
-                { icon: Building2, label: 'Gracie Mansion', detail: 'Cultural Showcase, NYC', desc: 'Cultural showcase at the official residence of the Mayor of New York City', quote: '"Gracie Mansion felt like a homecoming — Mithila has always belonged in rooms where decisions are made."' },
-                { icon: MapPin, label: 'Times Square & Madison Ave', detail: 'Public Art, NYC', desc: 'Public art installation in Times Square and Madison Avenue', quote: '"A fish motif thirty feet tall in Times Square — the village women who started this would not believe it."' },
-                { icon: Building, label: 'FDNY Headquarters', detail: 'Exhibition, NYC', desc: 'Exhibition at FDNY Headquarters, New York City', quote: '"First responders surrounded by fish and lotus — art softens spaces we usually see only in urgency."' },
-                { icon: Paintbrush, label: 'Watchung Art Center', detail: '"Magnetism" Exhibition, NJ', desc: '"Magnetism" group exhibition at Watchung Art Center, New Jersey', quote: '"Every group show is a chance to watch someone discover Mithila for the first time."' },
-                { icon: Award, label: 'Manville Art Council', detail: 'Curated Exhibition, NJ', desc: 'Curated exhibition at Manville Art Council, New Jersey', quote: '"Community spaces are where folk art lives — not in galleries, but where people gather."' },
-                { icon: Users, label: 'UCNJ Teen Arts Festival', detail: '1,000+ Students', desc: 'Mithila folk art workshop for over 1,000 students at UCNJ', quote: '"Watching a thousand teenagers focus on the same line, the same dot — that is preservation in action."' },
+                { icon: Globe, label: 'United Nations', detail: 'Exhibition, New York', desc: 'Exhibited Mithila folk art at the United Nations Headquarters, New York', quote: '"Standing at the UN with Mithila art — I never imagined this is where the tradition would take me."' },
+                { icon: Landmark, label: 'EU Headquarters', detail: 'Brussels, 2026', desc: 'Featured artist at the European Union Headquarters, Brussels', quote: '"Brussels was a reminder that Mithila\'s visual language translates anywhere."' },
+                { icon: Building2, label: 'Gracie Mansion', detail: 'Cultural Showcase, NYC', desc: 'Cultural showcase at the official residence of the Mayor of New York City', quote: '"Being invited to Gracie Mansion felt like the city was embracing my work."' },
+                { icon: MapPin, label: 'Times Square & Madison Ave', detail: 'Public Art, NYC', desc: 'Public art installation in Times Square and Madison Avenue', quote: '"Seeing a Mithila motif on a billboard in Times Square — that was a surreal moment."' },
+                { icon: Building, label: 'FDNY Headquarters', detail: 'Exhibition, NYC', desc: 'Exhibition at FDNY Headquarters, New York City', quote: '"The FDNY exhibition was special because art met a space built for service."' },
+                { icon: Paintbrush, label: 'Watchung Art Center', detail: '"Magnetism" Exhibition, NJ', desc: '"Magnetism" group exhibition at Watchung Art Center, New Jersey', quote: '"Every exhibition is a chance for someone to see Mithila art for the first time."' },
+                { icon: Award, label: 'Manville Art Council', detail: 'Curated Exhibition, NJ', desc: 'Curated exhibition at Manville Art Council, New Jersey', quote: '"Community spaces are where folk art feels most at home."' },
+                { icon: Users, label: 'UCNJ Teen Arts Festival', detail: '1,000+ Students', desc: 'Mithila folk art workshop for over 1,000 students at UCNJ', quote: '"Over a thousand students tried Mithila painting in one day. That stayed with me."' },
               ].map((item, i) => {
                 const isBig = i < 2;
                 const Icon = item.icon;
