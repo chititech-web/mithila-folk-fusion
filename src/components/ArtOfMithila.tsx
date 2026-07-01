@@ -78,7 +78,7 @@ const motifs = [
     ),
   },
   {
-    name: 'Tree of Life',
+    name: 'Tree',
     description: 'The Kohbar tree symbolizes the continuity of life, fertility, and the sacred bond of marriage.',
     svg: (
       <svg viewBox="0 0 80 80" className="w-16 h-16">
@@ -498,7 +498,7 @@ const ArtOfMithila: React.FC = () => {
                   <div className="flex justify-center mb-3 group-hover:scale-110 transition-transform duration-300">
                     {motif.svg}
                   </div>
-                  <h4 className="font-cinzel text-sm text-madhubani-yellow mb-1">{t(`artOfMithila.motif${motif.name.replace(/[^a-zA-Z]/g, '')}Name`)}</h4>
+                  <h4 className="font-cinzel text-sm text-madhubani-yellow mb-1">{t(`artOfMithila.motif${motif.name.replace(/[^a-zA-Z]/g, '')}`)}</h4>
                   <p className="font-cormorant text-xs text-cream/40 leading-relaxed">{t(`artOfMithila.motif${motif.name.replace(/[^a-zA-Z]/g, '')}Desc`)}</p>
                 </motion.div>
               ))}
