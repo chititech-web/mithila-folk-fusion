@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { CameraShy } from 'camerashy';
-import { Globe, Landmark, Building2, MapPin, Building, Paintbrush, Leaf, Users, Award, Star } from 'lucide-react';
+import { Globe, Landmark, Building2, MapPin, Building, Paintbrush, Users, Award } from 'lucide-react';
 import { SectionDivider } from './MadhubaniBorder';
 
 const slides = [
@@ -58,9 +58,6 @@ const About: React.FC = () => {
             About <span className="text-madhubani-red">Shivangi</span>
           </h2>
           <SectionDivider variant="lotus" />
-          <p className="font-playfair text-lg md:text-xl text-madhubani-red italic mt-4 tracking-wide">
-            "Preserving Heritage. Inspiring Tomorrow."
-          </p>
         </motion.div>
 
         <div className="space-y-16">
@@ -161,14 +158,7 @@ const About: React.FC = () => {
               className="md:col-span-7 text-left space-y-8 md:space-y-10 max-w-3xl"
             >
               <p className="font-cormorant text-2xl md:text-3xl text-madhubani-black/80 leading-relaxed">
-                <span className="font-playfair text-4xl md:text-5xl text-madhubani-red font-semibold italic">Shivangi Singh</span> 
-                {' '}is an Indian American contemporary Mithila (Madhubani) folk artist based in New Jersey, working under the name <strong className="text-madhubani-teal">MithilaFolkFusions</strong>. 
-                Originally from the Mithilanchal region of India and raised in Jharkhand, she brings a strong cultural foundation to her practice, blending traditional storytelling with contemporary themes that speak to global audiences.
-              </p>
-
-              <p className="font-cormorant text-xl md:text-2xl text-madhubani-black/70 leading-relaxed">
-                Her work is rooted in classical Mithila styles such as Kachni, Bharni, and Godna, while also expanding into experimental compositions on handmade paper using fine nib work and acrylics. 
-                Through her art, she explores identity, migration, women's narratives, ecology, and climate resilience—transforming folk visual language into a powerful medium for cultural dialogue and social reflection.
+                Shivangi Singh is an Indian American contemporary Mithila (Madhubani) folk artist based in New Jersey. Born in Bihar and raised in Jharkhand, she works across classical styles — Kachni, Bharni, Godna — and experimental compositions on handmade paper, using fine-nib work and acrylics to explore identity, migration, women's narratives, and ecology.
               </p>
             </motion.div>
           </div>
@@ -183,17 +173,14 @@ const About: React.FC = () => {
             </div>
             <div className="grid grid-cols-1 md:grid-cols-12 gap-5 md:gap-6">
               {[
-                { icon: Globe, label: 'United Nations', detail: 'Exhibition, New York', desc: 'Exhibited Mithila folk art at the United Nations Headquarters, showcasing cultural heritage on an international diplomatic platform.' },
-                { icon: Landmark, label: 'EU Headquarters', detail: 'Brussels, 2026', desc: 'Featured at the EU Headquarters in Brussels, strengthening international presence as a cultural ambassador of Mithila art.' },
-                { icon: Building2, label: 'Gracie Mansion', detail: 'Cultural Showcase, NYC', desc: 'Participated in cultural showcase at the official residence of the Mayor of New York City.' },
-                { icon: MapPin, label: 'Times Square & Madison Ave', detail: 'Public Art, NYC', desc: 'Public art visibility in Times Square and Madison Avenue events, bringing Mithila art to iconic NYC landmarks.' },
-                { icon: Building, label: 'FDNY Headquarters', detail: 'Exhibition, NYC', desc: 'Presented artwork at the FDNY Headquarters in New York City.' },
-                { icon: Paintbrush, label: 'Watchung Art Center', detail: '"Magnetism" Exhibition, NJ', desc: 'Participated in the "Magnetism" curated exhibition at Watchung Art Center, New Jersey.' },
-                { icon: Award, label: 'Manville Art Council', detail: 'Curated Exhibition, NJ', desc: 'Exhibited in curated exhibitions at Manville Art Council, New Jersey.' },
-                { icon: Leaf, label: 'Art for SDGs', detail: 'Mithila Center USA', desc: 'Actively involved with Mithila Center USA "Art for SDGs" exhibition series, contributing to global conversations around sustainability and cultural preservation.' },
-                { icon: Users, label: 'UCNJ Teen Arts Festival', detail: '1,000+ Students', desc: 'Conducted a Mithila folk art workshop at UCNJ Teen Arts Festival, introducing traditional art forms to over a thousand students.' },
-                { icon: Award, label: 'Women Entrepreneur', detail: 'Greater NY Chamber of Commerce', desc: 'Recognized as a Women Entrepreneur in the Arts by the Greater New York Chamber of Commerce.' },
-                { icon: Star, label: 'Top 35 Art Influencer', detail: 'Feedspot, 2025', desc: 'Listed among the Top 35 Indian American Art Influencers by Feedspot (2025).' },
+                { icon: Globe, label: 'United Nations', detail: 'Exhibition, New York' },
+                { icon: Landmark, label: 'EU Headquarters', detail: 'Brussels, 2026' },
+                { icon: Building2, label: 'Gracie Mansion', detail: 'Cultural Showcase, NYC' },
+                { icon: MapPin, label: 'Times Square & Madison Ave', detail: 'Public Art, NYC' },
+                { icon: Building, label: 'FDNY Headquarters', detail: 'Exhibition, NYC' },
+                { icon: Paintbrush, label: 'Watchung Art Center', detail: '"Magnetism" Exhibition, NJ' },
+                { icon: Award, label: 'Manville Art Council', detail: 'Curated Exhibition, NJ' },
+                { icon: Users, label: 'UCNJ Teen Arts Festival', detail: '1,000+ Students' },
               ].map((item, i) => {
                 const isBig = i < 2;
                 const Icon = item.icon;
@@ -204,46 +191,38 @@ const About: React.FC = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: i * 0.05 }}
-                    className="flip-card group/flip md:col-span-6 h-64 md:h-80"
-                    tabIndex={0}
+                    className="md:col-span-6 h-64 md:h-80"
                   >
-                    <div className="flip-card-inner w-full h-full relative">
-                      <div className="flip-card-front absolute inset-0 bg-cream-light p-6 md:p-8 transition-colors duration-300 flex flex-col items-center justify-center text-center gap-4">
-                        <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-madhubani-red via-madhubani-magenta to-madhubani-teal" />
-                        <div className="absolute inset-2 border border-madhubani-red/25 pointer-events-none" />
-                        <div className="absolute inset-4 border border-madhubani-yellow/30 pointer-events-none" />
-                        <svg className="absolute -top-1 -left-1 z-10 pointer-events-none" width="32" height="32" viewBox="0 0 32 32">
-                          <path d="M0,16 Q0,0 16,0" fill="none" stroke="#8B1A1A" strokeWidth="2"/>
-                          <circle cx="3" cy="3" r="3" fill="#E8A317"/>
-                          <path d="M4,12 Q4,4 12,4" fill="none" stroke="#C41E7F" strokeWidth="1.5"/>
-                        </svg>
-                        <svg className="absolute -top-1 -right-1 z-10 pointer-events-none" width="32" height="32" viewBox="0 0 32 32" style={{ transform: 'scaleX(-1)' }}>
-                          <path d="M0,16 Q0,0 16,0" fill="none" stroke="#8B1A1A" strokeWidth="2"/>
-                          <circle cx="3" cy="3" r="3" fill="#E8A317"/>
-                          <path d="M4,12 Q4,4 12,4" fill="none" stroke="#C41E7F" strokeWidth="1.5"/>
-                        </svg>
-                        <svg className="absolute -bottom-1 -left-1 z-10 pointer-events-none" width="32" height="32" viewBox="0 0 32 32" style={{ transform: 'scaleY(-1)' }}>
-                          <path d="M0,16 Q0,0 16,0" fill="none" stroke="#8B1A1A" strokeWidth="2"/>
-                          <circle cx="3" cy="3" r="3" fill="#E8A317"/>
-                          <path d="M4,12 Q4,4 12,4" fill="none" stroke="#C41E7F" strokeWidth="1.5"/>
-                        </svg>
-                        <svg className="absolute -bottom-1 -right-1 z-10 pointer-events-none" width="32" height="32" viewBox="0 0 32 32" style={{ transform: 'scale(-1)' }}>
-                          <path d="M0,16 Q0,0 16,0" fill="none" stroke="#8B1A1A" strokeWidth="2"/>
-                          <circle cx="3" cy="3" r="3" fill="#E8A317"/>
-                          <path d="M4,12 Q4,4 12,4" fill="none" stroke="#C41E7F" strokeWidth="1.5"/>
-                        </svg>
-                        <div className="w-16 h-16 md:w-20 md:h-20 flex items-center justify-center bg-madhubani-red/10 text-madhubani-red group-hover/flip:bg-madhubani-red group-hover/flip:text-cream transition-all duration-300 mt-2">
-                          <Icon size={32} />
-                        </div>
-                        <div>
-                          <p className="font-playfair text-lg md:text-xl text-madhubani-black font-semibold leading-tight">{item.label}</p>
-                          <p className="font-cormorant text-base md:text-lg text-madhubani-teal mt-1">{item.detail}</p>
-                        </div>
-                        <span className="font-cormorant text-xs md:text-sm text-madhubani-red/50 tracking-wider uppercase">Hover to explore</span>
+                    <div className="w-full h-full relative bg-cream-light p-6 md:p-8 flex flex-col items-center justify-center text-center gap-4">
+                      <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-madhubani-red via-madhubani-magenta to-madhubani-teal" />
+                      <div className="absolute inset-2 border border-madhubani-red/25 pointer-events-none" />
+                      <div className="absolute inset-4 border border-madhubani-yellow/30 pointer-events-none" />
+                      <svg className="absolute -top-1 -left-1 z-10 pointer-events-none" width="32" height="32" viewBox="0 0 32 32">
+                        <path d="M0,16 Q0,0 16,0" fill="none" stroke="#8B1A1A" strokeWidth="2"/>
+                        <circle cx="3" cy="3" r="3" fill="#E8A317"/>
+                        <path d="M4,12 Q4,4 12,4" fill="none" stroke="#C41E7F" strokeWidth="1.5"/>
+                      </svg>
+                      <svg className="absolute -top-1 -right-1 z-10 pointer-events-none" width="32" height="32" viewBox="0 0 32 32" style={{ transform: 'scaleX(-1)' }}>
+                        <path d="M0,16 Q0,0 16,0" fill="none" stroke="#8B1A1A" strokeWidth="2"/>
+                        <circle cx="3" cy="3" r="3" fill="#E8A317"/>
+                        <path d="M4,12 Q4,4 12,4" fill="none" stroke="#C41E7F" strokeWidth="1.5"/>
+                      </svg>
+                      <svg className="absolute -bottom-1 -left-1 z-10 pointer-events-none" width="32" height="32" viewBox="0 0 32 32" style={{ transform: 'scaleY(-1)' }}>
+                        <path d="M0,16 Q0,0 16,0" fill="none" stroke="#8B1A1A" strokeWidth="2"/>
+                        <circle cx="3" cy="3" r="3" fill="#E8A317"/>
+                        <path d="M4,12 Q4,4 12,4" fill="none" stroke="#C41E7F" strokeWidth="1.5"/>
+                      </svg>
+                      <svg className="absolute -bottom-1 -right-1 z-10 pointer-events-none" width="32" height="32" viewBox="0 0 32 32" style={{ transform: 'scale(-1)' }}>
+                        <path d="M0,16 Q0,0 16,0" fill="none" stroke="#8B1A1A" strokeWidth="2"/>
+                        <circle cx="3" cy="3" r="3" fill="#E8A317"/>
+                        <path d="M4,12 Q4,4 12,4" fill="none" stroke="#C41E7F" strokeWidth="1.5"/>
+                      </svg>
+                      <div className="w-16 h-16 md:w-20 md:h-20 flex items-center justify-center bg-madhubani-red/10 text-madhubani-red">
+                        <Icon size={32} />
                       </div>
-                      <div className="flip-card-back absolute inset-0 bg-madhubani-red text-cream p-6 md:p-8 flex flex-col items-center justify-center text-center gap-3">
-                        <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-madhubani-yellow via-cream to-madhubani-yellow opacity-60" />
-                        <p className="font-cormorant text-base md:text-lg leading-relaxed">{item.desc}</p>
+                      <div>
+                        <p className="font-playfair text-lg md:text-xl text-madhubani-black font-semibold leading-tight">{item.label}</p>
+                        <p className="font-cormorant text-base md:text-lg text-madhubani-teal mt-1">{item.detail}</p>
                       </div>
                     </div>
                   </motion.div>
@@ -254,46 +233,38 @@ const About: React.FC = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: i * 0.05 }}
-                    className="flip-card group/flip md:col-span-4 h-56 md:h-64"
-                    tabIndex={0}
+                    className="md:col-span-4 h-56 md:h-64"
                   >
-                    <div className="flip-card-inner w-full h-full relative">
-                      <div className="flip-card-front absolute inset-0 bg-cream-light p-5 md:p-6 transition-colors duration-300 flex flex-col items-center justify-center text-center gap-3">
-                        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-madhubani-red via-madhubani-magenta to-madhubani-teal" />
-                        <div className="absolute inset-2 border border-madhubani-red/20 pointer-events-none" />
-                        <div className="absolute inset-3 border border-madhubani-yellow/20 pointer-events-none" />
-                        <svg className="absolute -top-1 -left-1 z-10 pointer-events-none" width="24" height="24" viewBox="0 0 24 24">
-                          <path d="M0,12 Q0,0 12,0" fill="none" stroke="#8B1A1A" strokeWidth="1.5"/>
-                          <circle cx="2" cy="2" r="2" fill="#E8A317"/>
-                          <path d="M3,9 Q3,3 9,3" fill="none" stroke="#C41E7F" strokeWidth="1"/>
-                        </svg>
-                        <svg className="absolute -top-1 -right-1 z-10 pointer-events-none" width="24" height="24" viewBox="0 0 24 24" style={{ transform: 'scaleX(-1)' }}>
-                          <path d="M0,12 Q0,0 12,0" fill="none" stroke="#8B1A1A" strokeWidth="1.5"/>
-                          <circle cx="2" cy="2" r="2" fill="#E8A317"/>
-                          <path d="M3,9 Q3,3 9,3" fill="none" stroke="#C41E7F" strokeWidth="1"/>
-                        </svg>
-                        <svg className="absolute -bottom-1 -left-1 z-10 pointer-events-none" width="24" height="24" viewBox="0 0 24 24" style={{ transform: 'scaleY(-1)' }}>
-                          <path d="M0,12 Q0,0 12,0" fill="none" stroke="#8B1A1A" strokeWidth="1.5"/>
-                          <circle cx="2" cy="2" r="2" fill="#E8A317"/>
-                          <path d="M3,9 Q3,3 9,3" fill="none" stroke="#C41E7F" strokeWidth="1"/>
-                        </svg>
-                        <svg className="absolute -bottom-1 -right-1 z-10 pointer-events-none" width="24" height="24" viewBox="0 0 24 24" style={{ transform: 'scale(-1)' }}>
-                          <path d="M0,12 Q0,0 12,0" fill="none" stroke="#8B1A1A" strokeWidth="1.5"/>
-                          <circle cx="2" cy="2" r="2" fill="#E8A317"/>
-                          <path d="M3,9 Q3,3 9,3" fill="none" stroke="#C41E7F" strokeWidth="1"/>
-                        </svg>
-                        <div className="w-14 h-14 md:w-16 md:h-16 flex items-center justify-center bg-madhubani-red/10 text-madhubani-red group-hover/flip:bg-madhubani-red group-hover/flip:text-cream transition-all duration-300 mt-3">
-                          <Icon size={26} />
-                        </div>
-                        <div>
-                          <p className="font-playfair text-base md:text-lg text-madhubani-black font-semibold leading-tight">{item.label}</p>
-                          <p className="font-cormorant text-sm md:text-base text-madhubani-teal mt-1">{item.detail}</p>
-                        </div>
-                        <span className="font-cormorant text-[11px] md:text-xs text-madhubani-red/50 tracking-wider uppercase">Hover to explore</span>
+                    <div className="w-full h-full relative bg-cream-light p-5 md:p-6 flex flex-col items-center justify-center text-center gap-3">
+                      <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-madhubani-red via-madhubani-magenta to-madhubani-teal" />
+                      <div className="absolute inset-2 border border-madhubani-red/20 pointer-events-none" />
+                      <div className="absolute inset-3 border border-madhubani-yellow/20 pointer-events-none" />
+                      <svg className="absolute -top-1 -left-1 z-10 pointer-events-none" width="24" height="24" viewBox="0 0 24 24">
+                        <path d="M0,12 Q0,0 12,0" fill="none" stroke="#8B1A1A" strokeWidth="1.5"/>
+                        <circle cx="2" cy="2" r="2" fill="#E8A317"/>
+                        <path d="M3,9 Q3,3 9,3" fill="none" stroke="#C41E7F" strokeWidth="1"/>
+                      </svg>
+                      <svg className="absolute -top-1 -right-1 z-10 pointer-events-none" width="24" height="24" viewBox="0 0 24 24" style={{ transform: 'scaleX(-1)' }}>
+                        <path d="M0,12 Q0,0 12,0" fill="none" stroke="#8B1A1A" strokeWidth="1.5"/>
+                        <circle cx="2" cy="2" r="2" fill="#E8A317"/>
+                        <path d="M3,9 Q3,3 9,3" fill="none" stroke="#C41E7F" strokeWidth="1"/>
+                      </svg>
+                      <svg className="absolute -bottom-1 -left-1 z-10 pointer-events-none" width="24" height="24" viewBox="0 0 24 24" style={{ transform: 'scaleY(-1)' }}>
+                        <path d="M0,12 Q0,0 12,0" fill="none" stroke="#8B1A1A" strokeWidth="1.5"/>
+                        <circle cx="2" cy="2" r="2" fill="#E8A317"/>
+                        <path d="M3,9 Q3,3 9,3" fill="none" stroke="#C41E7F" strokeWidth="1"/>
+                      </svg>
+                      <svg className="absolute -bottom-1 -right-1 z-10 pointer-events-none" width="24" height="24" viewBox="0 0 24 24" style={{ transform: 'scale(-1)' }}>
+                        <path d="M0,12 Q0,0 12,0" fill="none" stroke="#8B1A1A" strokeWidth="1.5"/>
+                        <circle cx="2" cy="2" r="2" fill="#E8A317"/>
+                        <path d="M3,9 Q3,3 9,3" fill="none" stroke="#C41E7F" strokeWidth="1"/>
+                      </svg>
+                      <div className="w-14 h-14 md:w-16 md:h-16 flex items-center justify-center bg-madhubani-red/10 text-madhubani-red">
+                        <Icon size={26} />
                       </div>
-                      <div className="flip-card-back absolute inset-0 bg-madhubani-red text-cream p-5 md:p-6 flex flex-col items-center justify-center text-center gap-2">
-                        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-madhubani-yellow via-cream to-madhubani-yellow opacity-60" />
-                        <p className="font-cormorant text-sm md:text-base leading-relaxed">{item.desc}</p>
+                      <div>
+                        <p className="font-playfair text-base md:text-lg text-madhubani-black font-semibold leading-tight">{item.label}</p>
+                        <p className="font-cormorant text-sm md:text-base text-madhubani-teal mt-1">{item.detail}</p>
                       </div>
                     </div>
                   </motion.div>
@@ -305,7 +276,7 @@ const About: React.FC = () => {
           {/* Closing + Stats */}
           <div className="text-center space-y-10 max-w-3xl mx-auto">
             <p className="font-cormorant text-lg text-madhubani-black/70 leading-relaxed">
-              Through MithilaFolkFusions, she continues to preserve and evolve Mithila heritage bridging tradition and modernity while amplifying community voices through art.
+              Through MithilaFolkFusions, Shivangi brings the ritual precision of Mithila painting into contemporary spaces — working with galleries, interior designers, and institutions to keep the tradition vital.
             </p>
 
             <div className="grid grid-cols-3 gap-6 pt-10">

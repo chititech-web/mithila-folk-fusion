@@ -3,24 +3,24 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const quotes = [
   {
-    text: "Shivangi's Madhubani paintings are not just art — they are windows into a thousand-year-old tradition, rendered with the freshness of a modern eye.",
-    author: "Art Collector",
-    location: "New York",
+    text: "The Tree of Life painting arrived in a way that made the whole room stop. Every dinner guest asks about it. People don't just glance — they stand and look.",
+    author: "Homeowner",
+    location: "Princeton, NJ",
   },
   {
-    text: "The intricate detail and vibrant colors in every piece reflect a deep reverence for the Mithila tradition. Each painting tells a story that transcends time.",
-    author: "Gallery Curator",
-    location: "New Jersey",
+    text: "Shivangi's workshop brought the kind of focus I'd never seen in a classroom. Over a thousand teenagers went quiet for Mithila art. That's the power of what she does.",
+    author: "Festival Director",
+    location: "Union County, NJ",
   },
   {
-    text: "My commissioned piece from Mithilafolkfusions is the centerpiece of my home. The Tree of Life painting brings such warmth and cultural richness to our space.",
-    author: "Private Collector",
-    location: "Connecticut",
+    text: "I needed a piece for our office lobby that said something about heritage. She listened for thirty minutes, then sent sketches the next day. The final painting is precise and vivid in person.",
+    author: "Interior Designer",
+    location: "New York, NY",
   },
   {
-    text: "Watching Shivangi create is mesmerizing — the confidence of each line, the thoughtfulness of each motif. She breathes life into every canvas.",
+    text: "People took photos for ten full minutes after she finished her presentation at the UN. The motifs speak a language you don't need to translate.",
     author: "Exhibition Visitor",
-    location: "New York",
+    location: "New York, NY",
   },
 ];
 

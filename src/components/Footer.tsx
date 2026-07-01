@@ -18,8 +18,8 @@ const Footer: React.FC = () => {
               </div>
             </div>
             <p className="font-cormorant text-cream/50 leading-relaxed">
-              Preserving the ancient tradition of Madhubani painting while creating 
-              a bridge to contemporary art lovers worldwide.
+              Mithila folk art from the village walls of Bihar to the halls of the 
+              United Nations — hand-painted, one line at a time.
             </p>
           </div>
 

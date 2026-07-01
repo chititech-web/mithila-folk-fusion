@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://mithila-folk-fusion.vercel.app/</loc>
+    <lastmod>2026-07-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://mithila-folk-fusion.vercel.app/og-image.png</image:loc>
+      <image:title>Mithila Folk Art by Shivangi Singh</image:title>
+      <image:caption>Madhubani paintings by Shivangi Singh — Mithila Folk Fusions</image:caption>
+    </image:image>
+  </url>
+</urlset>

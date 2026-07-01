@@ -168,8 +168,7 @@ const Gallery: React.FC = () => {
           </h2>
           <SectionDivider variant="peacock" />
           <p className="font-cormorant text-lg text-madhubani-black/60 max-w-2xl mx-auto mt-4">
-            Each artwork is a conversation between ancient Mithila traditions and the contemporary soul —
-            hand-painted with love, patience, and reverence for the craft
+            Six works spanning mythology, climate, and identity — each one hand-painted on handmade paper with fine-nib precision and natural pigments
           </p>
         </motion.div>
 

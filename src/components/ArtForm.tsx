@@ -171,9 +171,10 @@ const ArtForm: React.FC = () => {
           </h2>
           <SectionDivider variant="fish" />
           <p className="font-cormorant text-lg text-cream/60 max-w-3xl mx-auto mt-4 leading-relaxed">
-            Madhubani painting, also known as Mithila art, is a form of Indian folk art that originated 
-            over 2,500 years ago in the Mithila region of Bihar. Traditionally practiced by women on the 
-            walls and floors of their homes, this sacred art form has evolved into a globally celebrated medium.
+            Mithila painting begins with a line — bold, unbroken, alive. For 2,500 years, 
+            the women of Bihar have drawn these lines on mud walls, on floors, on paper — 
+            filling every inch with fish, lotus, peacock, sun. There is no empty space in Madhubani, 
+            only story after story waiting to be read.
           </p>
         </motion.div>
 

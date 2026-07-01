@@ -7,37 +7,37 @@ const services = [
   {
     icon: <Palette className="w-8 h-8" />,
     title: 'Custom Paintings',
-    description: 'Personalized Madhubani artwork tailored to your vision — from family portraits to mythological scenes.',
+    description: `A single conversation shapes the brief; fine-nib work on handmade paper translates your story into Mithila's 2,500-year-old visual language.`,
     color: 'madhubani-red',
   },
   {
     icon: <Frame className="w-8 h-8" />,
     title: 'Wall Murals',
-    description: 'Transform your space with large-scale Mithila art installations for homes, offices, and public spaces.',
+    description: 'Painted on-site or on mounted panels — large-format Madhubani compositions for lobbies, galleries, restaurants, and residential walls.',
     color: 'madhubani-teal',
   },
   {
     icon: <Gift className="w-8 h-8" />,
-    title: 'Art as Gifts',
-    description: 'Meaningful, handcrafted Madhubani pieces perfect for weddings, festivals, and special occasions.',
+    title: 'Commissions as Gifts',
+    description: 'A commissioned Madhubani piece for weddings, anniversaries, or milestones — framed and shipped, with a note that carries the artist\'s voice.',
     color: 'madhubani-magenta',
   },
   {
     icon: <Brush className="w-8 h-8" />,
     title: 'Workshops',
-    description: 'Learn the ancient techniques of Madhubani painting through guided sessions and demonstrations.',
+    description: 'Two-hour to full-day sessions covering Kachni, Bharni, and Godna techniques. All materials provided. Suitable for schools, museums, and corporate teams.',
     color: 'madhubani-green',
   },
   {
     icon: <Heart className="w-8 h-8" />,
-    title: 'Cultural Events',
-    description: 'Live painting demonstrations and cultural showcases for festivals, corporate events, and exhibitions.',
+    title: 'Live Demonstrations',
+    description: 'The artist paints live at your venue — a festival, conference, or gallery opening — while guests observe the discipline of Mithila linework up close.',
     color: 'madhubani-orange',
   },
   {
     icon: <Star className="w-8 h-8" />,
-    title: 'Prints & Merchandise',
-    description: 'High-quality prints, greeting cards, and products featuring original Madhubani designs.',
+    title: 'Giclée Prints',
+    description: 'Archival-quality fine-art prints of original works, signed and numbered. Custom sizing available for residential and commercial framing.',
     color: 'madhubani-blue',
   },
 ];
@@ -74,7 +74,7 @@ const Commission: React.FC = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <span className="text-madhubani-yellow font-cormorant text-lg tracking-[0.4em] uppercase">Services</span>
+          <span className="text-madhubani-yellow font-cormorant text-lg tracking-[0.4em] uppercase">Commissions</span>
           <h2 className="font-cinzel text-3xl md:text-5xl text-cream mt-3 mb-4">
             Commission <span className="text-madhubani-yellow">Your Art</span>
           </h2>
@@ -87,8 +87,8 @@ const Commission: React.FC = () => {
             </svg>
           </div>
           <p className="font-cormorant text-lg text-cream/70 max-w-2xl mx-auto mt-4">
-            Bring the magic of Mithila art into your world — every piece is handcrafted with devotion 
-            and infused with the timeless spirit of Madhubani tradition
+            A commissioned Mithila piece begins with a conversation — your vision, translated 
+            into line and pigment, on handmade paper that carries a 2,500-year-old tradition
           </p>
         </motion.div>
 
