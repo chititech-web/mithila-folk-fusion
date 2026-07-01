@@ -24,9 +24,7 @@ const PortfolioLightbox: React.FC<Props> = ({ works, selectedIndex, onClose }) =
   const [currentIndex, setCurrentIndex] = React.useState<number | null>(null);
 
   useEffect(() => {
-    if (selectedIndex !== null) {
-      setCurrentIndex(selectedIndex);
-    }
+    setCurrentIndex(selectedIndex);
   }, [selectedIndex]);
 
   const prev = useCallback(() => {
