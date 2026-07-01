@@ -27,14 +27,22 @@ const Footer: React.FC = () => {
           <div className="text-center md:text-left">
             <h4 className="font-cinzel text-sm text-madhubani-yellow tracking-wider mb-4 uppercase">Explore</h4>
             <div className="grid grid-cols-2 gap-2">
-              {['Home', 'About', 'Gallery', 'The Art', 'Exhibitions', 'Commission', 'Contact'].map((link) => (
-                <a
-                  key={link}
-                  href={`#${link.toLowerCase().replace(' ', '-')}`}
-                  className="font-cormorant text-cream/50 hover:text-madhubani-yellow transition-colors py-1"
+              {[
+                { label: 'Home', target: 'home' },
+                { label: 'About', target: 'about' },
+                { label: 'Gallery', target: 'gallery' },
+                { label: 'Art Form', target: 'art-form' },
+                { label: 'Exhibitions', target: 'exhibitions' },
+                { label: 'Commission', target: 'commission' },
+                { label: 'Contact', target: 'contact' },
+              ].map((link) => (
+                <button
+                  key={link.label}
+                  onClick={() => document.getElementById(link.target)?.scrollIntoView({ behavior: 'smooth' })}
+                  className="font-cormorant text-cream/50 hover:text-madhubani-yellow transition-colors py-1 text-left"
                 >
-                  {link}
-                </a>
+                  {link.label}
+                </button>
               ))}
             </div>
           </div>
@@ -65,7 +73,9 @@ const Footer: React.FC = () => {
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
               </a>
               <a
-                href="#"
+                href="https://www.youtube.com/@Mithilafolkfusions"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 border border-cream/20 flex items-center justify-center text-cream/50 hover:text-madhubani-yellow hover:border-madhubani-yellow transition-all"
                 aria-label="YouTube"
               >
