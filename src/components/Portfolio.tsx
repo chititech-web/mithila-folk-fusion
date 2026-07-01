@@ -203,9 +203,6 @@ const Portfolio: React.FC = () => {
                         <p className="font-playfair text-sm text-madhubani-black/50">
                           <span className="text-madhubani-teal">Medium:</span> {work.medium}
                         </p>
-                        <p className="font-playfair text-sm text-madhubani-black/50">
-                          <span className="text-madhubani-teal">Dimensions:</span> {work.dimensions}
-                        </p>
                       </div>
 
                       {/* CTA */}

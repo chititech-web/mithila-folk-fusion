@@ -129,9 +129,6 @@ const PortfolioLightbox: React.FC<Props> = ({ works, selectedIndex, onClose }) =
             <p className="font-playfair text-base md:text-lg text-cream/50">
               <span className="text-madhubani-teal">Medium:</span> {work.medium}
             </p>
-            <p className="font-playfair text-base md:text-lg text-cream/50">
-              <span className="text-madhubani-teal">Dimensions:</span> {work.dimensions}
-            </p>
           </div>
 
           <Link
