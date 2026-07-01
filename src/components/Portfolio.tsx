@@ -152,13 +152,13 @@ const Portfolio: React.FC = () => {
                         <path d="M6,14 Q6,6 14,6" fill="none" stroke="#C41E7F" strokeWidth="1"/>
                       </svg>
 
-                      <CameraShy mode="blur" blur="20px" sensitivity="balanced">
+                      <CameraShy mode="blur" blur="20px" sensitivity="balanced" style={{ display: 'block' }}>
                       <img
                         src={work.src}
                         alt={work.title}
                         draggable="false"
                         onDragStart={(e) => e.preventDefault()}
-                        className="w-full h-[32rem] md:h-[42rem] object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+                        className="w-full h-auto transition-transform duration-700 group-hover:scale-[1.02]"
                       />
                       </CameraShy>
 
