@@ -20,22 +20,6 @@ interface Props {
 }
 
 const PortfolioLightbox: React.FC<Props> = ({ works, selectedIndex, onClose }) => {
-  const prev = useCallback(() => {
-    if (selectedIndex === null) return;
-    const el = document.getElementById('portfolio-lightbox');
-    if (el) el.scrollTop = 0;
-    const nextIdx = selectedIndex === 0 ? works.length - 1 : selectedIndex - 1;
-    window.dispatchEvent(new CustomEvent('lightbox-navigate', { detail: nextIdx }));
-  }, [selectedIndex, works.length]);
-
-  const next = useCallback(() => {
-    if (selectedIndex === null) return;
-    const el = document.getElementById('portfolio-lightbox');
-    if (el) el.scrollTop = 0;
-    const nextIdx = selectedIndex === works.length - 1 ? 0 : selectedIndex + 1;
-    window.dispatchEvent(new CustomEvent('lightbox-navigate', { detail: nextIdx }));
-  }, [selectedIndex, works.length]);
-
   const [currentIndex, setCurrentIndex] = React.useState<number | null>(null);
 
   useEffect(() => {
@@ -44,14 +28,19 @@ const PortfolioLightbox: React.FC<Props> = ({ works, selectedIndex, onClose }) =
     }
   }, [selectedIndex]);
 
-  useEffect(() => {
-    const handler = (e: Event) => {
-      const detail = (e as CustomEvent).detail;
-      setCurrentIndex(detail);
-    };
-    window.addEventListener('lightbox-navigate', handler);
-    return () => window.removeEventListener('lightbox-navigate', handler);
-  }, []);
+  const prev = useCallback(() => {
+    if (currentIndex === null) return;
+    const el = document.getElementById('portfolio-lightbox');
+    if (el) el.scrollTop = 0;
+    setCurrentIndex(currentIndex === 0 ? works.length - 1 : currentIndex - 1);
+  }, [currentIndex, works.length]);
+
+  const next = useCallback(() => {
+    if (currentIndex === null) return;
+    const el = document.getElementById('portfolio-lightbox');
+    if (el) el.scrollTop = 0;
+    setCurrentIndex(currentIndex === works.length - 1 ? 0 : currentIndex + 1);
+  }, [currentIndex, works.length]);
 
   useEffect(() => {
     if (currentIndex === null) return;
@@ -118,30 +107,30 @@ const PortfolioLightbox: React.FC<Props> = ({ works, selectedIndex, onClose }) =
         </div>
 
         {/* Description panel */}
-        <div className="w-full md:w-96 shrink-0 bg-cream/5 backdrop-blur-sm border-t md:border-t-0 md:border-l border-cream/10 p-6 md:p-8 flex flex-col justify-center overflow-y-auto max-h-[40vh] md:max-h-screen">
-          <span className="font-playfair text-xs tracking-[0.3em] uppercase text-madhubani-magenta border border-madhubani-magenta/30 px-3 py-1 inline-block w-fit mb-4">
+        <div className="w-full md:w-[480px] shrink-0 bg-cream/5 backdrop-blur-sm border-t md:border-t-0 md:border-l border-cream/10 p-8 md:p-10 flex flex-col justify-center overflow-y-auto max-h-[40vh] md:max-h-screen">
+          <span className="font-playfair text-xs md:text-sm tracking-[0.3em] uppercase text-madhubani-magenta border border-madhubani-magenta/30 px-4 py-1.5 inline-block w-fit mb-5">
             {work.category}
           </span>
-          <h2 className="font-cinzel text-2xl md:text-3xl text-cream leading-tight mb-4">
+          <h2 className="font-cinzel text-3xl md:text-5xl text-cream leading-tight mb-5">
             {work.title}
           </h2>
-          <div className="flex items-center gap-3 mb-5">
-            <div className="w-12 h-0.5 bg-madhubani-red" />
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-14 h-0.5 bg-madhubani-red" />
             <svg width="10" height="10" viewBox="0 0 12 12">
               <circle cx="6" cy="6" r="2" fill="none" stroke="#E8A317" strokeWidth="0.8" />
               <circle cx="6" cy="6" r="0.8" fill="#C41E7F" />
             </svg>
           </div>
-          <div className="font-cormorant text-base text-cream/70 leading-relaxed space-y-3 mb-6">
+          <div className="font-cormorant text-lg md:text-xl text-cream/70 leading-relaxed space-y-4 mb-8">
             {work.description.split('\n\n').map((p, i) => (
               <p key={i}>{p}</p>
             ))}
           </div>
-          <div className="space-y-2 pt-4 border-t border-cream/10">
-            <p className="font-playfair text-sm text-cream/50">
+          <div className="space-y-3 pt-5 border-t border-cream/10">
+            <p className="font-playfair text-base md:text-lg text-cream/50">
               <span className="text-madhubani-teal">Medium:</span> {work.medium}
             </p>
-            <p className="font-playfair text-sm text-cream/50">
+            <p className="font-playfair text-base md:text-lg text-cream/50">
               <span className="text-madhubani-teal">Dimensions:</span> {work.dimensions}
             </p>
           </div>
@@ -156,7 +145,7 @@ const PortfolioLightbox: React.FC<Props> = ({ works, selectedIndex, onClose }) =
         </button>
         <button
           onClick={next}
-          className="absolute right-2 md:right-[calc(24rem+1rem)] top-1/2 -translate-y-1/2 z-20 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center text-cream/40 hover:text-cream hover:bg-cream/10 rounded-full transition-all"
+          className="absolute right-2 md:right-[calc(480px+1rem)] top-1/2 -translate-y-1/2 z-20 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center text-cream/40 hover:text-cream hover:bg-cream/10 rounded-full transition-all"
         >
           <ChevronRight size={28} />
         </button>
