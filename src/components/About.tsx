@@ -139,7 +139,7 @@ const About: React.FC = () => {
                         style={{ opacity: i === current ? 1 : 0 }}
                       >
                         {slide.type === 'image' ? (
-                          <CameraShy mode="blur" blur="20px" sensitivity="balanced">
+                          <CameraShy mode="blur" blur="20px" sensitivity="balanced" style={{ display: 'flex', width: '100%', height: '100%' }}>
                           <img
                             src={slide.src}
                             alt="Shivangi Singh"
