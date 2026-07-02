@@ -522,7 +522,10 @@ const Gallery: React.FC = () => {
                                 encodeURIComponent(subjectLine) + '&body=' + encodeURIComponent(body);
                               const a = document.createElement('a');
                               a.href = mailto;
+                              a.style.display = 'none';
+                              document.body.appendChild(a);
                               a.click();
+                              document.body.removeChild(a);
                               setSubmitted(true);
                               setTimeout(() => { setShowInquiryForm(false); setSubmitted(false); }, 3000);
                             }}

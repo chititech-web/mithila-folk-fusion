@@ -41,7 +41,10 @@ const Contact: React.FC = () => {
       encodeURIComponent(subjectLine) + '&body=' + encodeURIComponent(body);
     const a = document.createElement('a');
     a.href = mailto;
+    a.style.display = 'none';
+    document.body.appendChild(a);
     a.click();
+    document.body.removeChild(a);
     setSubmitted(true);
     setTimeout(() => setSubmitted(false), 3000);
     setFormData({ name: '', email: '', subject: '', message: '' });
