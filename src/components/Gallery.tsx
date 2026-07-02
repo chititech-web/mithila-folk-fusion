@@ -518,14 +518,11 @@ const Gallery: React.FC = () => {
                                 'Subject: ' + formData.subject + '\n' +
                                 'Artwork: ' + t(`gallery.art${selectedArt.id}Title`) + '\n\n' +
                                 formData.message + '\n\n---\nSent from Mithila Folk Fusions';
-                              const mailto = 'mailto:Mithilafolkfusions@gmail.com?subject=' +
-                                encodeURIComponent(subjectLine) + '&body=' + encodeURIComponent(body);
-                              const a = document.createElement('a');
-                              a.href = mailto;
-                              a.style.display = 'none';
-                              document.body.appendChild(a);
-                              a.click();
-                              document.body.removeChild(a);
+                              const gmailUrl = 'https://mail.google.com/mail/?view=cm&fs=1' +
+                                '&to=' + encodeURIComponent('Mithilafolkfusions@gmail.com') +
+                                '&su=' + encodeURIComponent(subjectLine) +
+                                '&body=' + encodeURIComponent(body);
+                              window.open(gmailUrl, '_blank');
                               setSubmitted(true);
                               setTimeout(() => { setShowInquiryForm(false); setSubmitted(false); }, 3000);
                             }}

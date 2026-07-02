@@ -37,14 +37,11 @@ const Contact: React.FC = () => {
       'Email: ' + formData.email + '\n' +
       'Subject: ' + formData.subject + '\n\n' +
       formData.message + '\n\n---\nSent from Mithila Folk Fusions';
-    const mailto = 'mailto:Mithilafolkfusions@gmail.com?subject=' +
-      encodeURIComponent(subjectLine) + '&body=' + encodeURIComponent(body);
-    const a = document.createElement('a');
-    a.href = mailto;
-    a.style.display = 'none';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
+    const gmailUrl = 'https://mail.google.com/mail/?view=cm&fs=1' +
+      '&to=' + encodeURIComponent('Mithilafolkfusions@gmail.com') +
+      '&su=' + encodeURIComponent(subjectLine) +
+      '&body=' + encodeURIComponent(body);
+    window.open(gmailUrl, '_blank');
     setSubmitted(true);
     setTimeout(() => setSubmitted(false), 3000);
     setFormData({ name: '', email: '', subject: '', message: '' });
