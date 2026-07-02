@@ -37,8 +37,11 @@ const Contact: React.FC = () => {
       'Email: ' + formData.email + '\n' +
       'Subject: ' + formData.subject + '\n\n' +
       formData.message + '\n\n---\nSent from Mithila Folk Fusions';
-    window.location.href = 'mailto:Mithilafolkfusions@gmail.com?subject=' +
+    const mailto = 'mailto:Mithilafolkfusions@gmail.com?subject=' +
       encodeURIComponent(subjectLine) + '&body=' + encodeURIComponent(body);
+    const a = document.createElement('a');
+    a.href = mailto;
+    a.click();
     setSubmitted(true);
     setTimeout(() => setSubmitted(false), 3000);
     setFormData({ name: '', email: '', subject: '', message: '' });
