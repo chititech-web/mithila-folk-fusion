@@ -23,6 +23,28 @@ if (typeof window !== 'undefined') {
     if (e.key === 'F12') e.preventDefault();
     if (e.ctrlKey && e.shiftKey && ['i', 'j', 'c'].includes(key)) e.preventDefault();
   });
+  // Mobile: block iOS gesture events (peek, pop, preview) on images
+  document.addEventListener('gesturestart', (e) => {
+    const target = e.target as HTMLElement;
+    if (target.tagName === 'IMG' || target.tagName === 'VIDEO' || target.closest('[class*="gallery"], [class*="lightbox"], [class*="portfolio"]')) {
+      e.preventDefault();
+    }
+  }, { passive: false });
+  // Mobile: block iOS 3D Touch / force touch on images
+  document.addEventListener('touchforcechange', (e) => {
+    const target = e.target as HTMLElement;
+    if (target.tagName === 'IMG') e.preventDefault();
+  }, { passive: false });
+  // Mobile: intercept long-press before contextmenu fires (Android/iOS)
+  let lpTimer: ReturnType<typeof setTimeout> | null = null;
+  document.addEventListener('touchstart', (e) => {
+    const target = e.target as HTMLElement;
+    if (target.tagName === 'IMG' || target.tagName === 'VIDEO') {
+      lpTimer = setTimeout(() => e.preventDefault(), 200);
+    }
+  }, { passive: false });
+  document.addEventListener('touchend', () => { if (lpTimer) { clearTimeout(lpTimer); lpTimer = null; } });
+  document.addEventListener('touchmove', () => { if (lpTimer) { clearTimeout(lpTimer); lpTimer = null; } });
   // Blur page when window/tab loses focus (catches Snipping Tool, Win+Shift+S, etc.)
   const setBlurred = (blurred: boolean) => {
     document.documentElement.classList.toggle('page-blurred', blurred);
