@@ -6,6 +6,8 @@ import { useTranslation } from 'react-i18next';
 import { SectionDivider } from './MadhubaniBorder';
 
 const slides = [
+  { type: 'image', src: '/images/un.jpeg' },
+  { type: 'image', src: '/images/eeas.jpeg' },
   { type: 'image', src: '/images/profile-headshot.jpg' },
   { type: 'image', src: '/images/eu-podium.jpg' },
   { type: 'image', src: '/images/un-outdoor.jpg' },
